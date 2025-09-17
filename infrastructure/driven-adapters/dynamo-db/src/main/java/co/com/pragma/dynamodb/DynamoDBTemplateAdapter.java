@@ -1,5 +1,6 @@
 package co.com.pragma.dynamodb;
 
+import co.com.pragma.dynamodb.entities.LoanReportEventEntity;
 import co.com.pragma.dynamodb.helper.TemplateAdapterOperations;
 import co.com.pragma.model.loanreportevent.LoanReportEvent;
 import co.com.pragma.model.loanreportevent.gateways.LoanReportEventRepository;

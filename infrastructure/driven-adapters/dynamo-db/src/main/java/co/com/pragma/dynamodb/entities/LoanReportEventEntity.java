@@ -1,4 +1,4 @@
-package co.com.pragma.dynamodb;
+package co.com.pragma.dynamodb.entities;
 
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;

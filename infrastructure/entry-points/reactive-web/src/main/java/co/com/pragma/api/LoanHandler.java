@@ -16,6 +16,8 @@ public class LoanHandler {
 
     public Mono<ServerResponse> getLoanStatsUseCase(ServerRequest serverRequest) {
         return useCase.getLoanStats()
-                .flatMap(stats -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(stats));
+                .flatMap(stats -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(stats));
     }
 }

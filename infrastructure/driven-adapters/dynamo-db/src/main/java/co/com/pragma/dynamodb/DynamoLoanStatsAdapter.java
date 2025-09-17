@@ -3,7 +3,6 @@ package co.com.pragma.dynamodb;
 import co.com.pragma.model.loanstats.LoanStats;
 import co.com.pragma.model.loanstats.gateways.LoanStatsRepository;
 import lombok.RequiredArgsConstructor;
-import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
@@ -22,7 +21,6 @@ public class DynamoLoanStatsAdapter implements LoanStatsRepository {
     private static final String STATS_ID = "loan_stats_summary_1010";
 
     private final DynamoDbAsyncClient dynamoDbAsyncClient;
-    private final ObjectMapper mapper;
 
     @Override
     public Mono<LoanStats> getStats() {
