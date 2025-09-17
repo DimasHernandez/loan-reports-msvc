@@ -14,7 +14,7 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Reports Microservice").version("1.0.0").description("API for processing approved loan events and updating statistics."))
+                .info(new Info().title("Microservice Reports.").version("1.0.0").description("API for processing approved loan events and updating statistics."))
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(new Components().addSecuritySchemes("bearerAuth",
                         new SecurityScheme()
