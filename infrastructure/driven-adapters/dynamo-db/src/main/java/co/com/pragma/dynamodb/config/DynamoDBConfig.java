@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient;
 import software.amazon.awssdk.metrics.MetricPublisher;
@@ -14,6 +16,9 @@ import java.net.URI;
 
 @Configuration
 public class DynamoDBConfig {
+
+    @Value("${aws.user}")
+    private String userAws;
 
     @Bean
     @Profile({"local"})
@@ -33,7 +38,9 @@ public class DynamoDBConfig {
     public DynamoDbAsyncClient amazonDynamoDBAsync(MetricPublisher publisher, @Value("${aws.region}") String region) {
         return DynamoDbAsyncClient.builder()
 //                .credentialsProvider(WebIdentityTokenFileCredentialsProvider.create())//Original
-                .credentialsProvider(ProfileCredentialsProvider.create("user-request-msvc-loan23ww"))
+//                .credentialsProvider(ProfileCredentialsProvider.create(userAws))
+                .credentialsProvider(EnvironmentVariableCredentialsProvider.create())// dev
+//                .credentialsProvider(DefaultCredentialsProvider.builder().build())// prod
                 .region(Region.of(region))
                 .overrideConfiguration(o -> o.addMetricPublisher(publisher))
                 .build();
