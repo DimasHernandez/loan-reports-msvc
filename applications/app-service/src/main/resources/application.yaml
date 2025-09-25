@@ -12,23 +12,26 @@ spring:
       enabled: true
       path: "/h2"
   profiles:
-#    include: null
+    #include: null
     active: "dev"
 entrypoint:
   sqs:
-    region: "us-east-2"
-    queueUrl: "https://sqs.us-east-2.amazonaws.com/881799718010/approved-loan-applications-report-queue"
+    region: "${AWS_REGION:us-east-2}"
+    queueUrl: "${QUEUE_URL_APPROVED_LOAN_REPORTS:https://sqs.us-east-2.amazonaws.com/881799718010/approved-loan-applications-report-queue}"
     waitTimeSeconds: 20
     maxNumberOfMessages: 10
     visibilityTimeoutSeconds: 10
     numberOfThreads: 1
 aws:
-  region: "us-east-2"
+  region: "${AWS_REGION:us-east-2}"
+  user: "${USER_AWS:user-request-msvc-loan23ww}"
+  accessKey: "${AWS_ACCESS_KEY_ID}"
+  secretKey: "${AWS_SECRET_ACCESS_KEY}"
 #  dynamodb:
 #    endpoint: ""
 security:
   jwt:
-    secretKey: "VC_ayQoxqq_7BcqwcYplfPc5Au38nbm8Z_u5ReEHVE0="
+    secretKey: "${SUPER_SECRET_KEY:VC_ayQoxqq_7BcqwcYplfPc5Au38nbm8Z_u5ReEHVE0=}"
 management:
   endpoints:
     web:
